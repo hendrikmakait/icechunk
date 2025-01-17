@@ -7,7 +7,7 @@ When creating and opening Icechunk stores, there are a two different sets of con
 
 ## Storage Config
 
-Icechunk can be confirgured to work with both object storage and filesystem backends. The storage configuration defines the location of an Icechunk store, along with any options or information needed to access data from a given storage type.
+Icechunk can be configured to work with both object storage and filesystem backends. The storage configuration defines the location of an Icechunk store, along with any options or information needed to access data from a given storage type.
 
 ### S3 Storage
 
@@ -135,7 +135,7 @@ Icechunk allows for reading "Virtual" data from [existing archival datasets](./v
 
 ## Creating and Opening Repos
 
-Now we can now create or open an Icechunk store using our config.
+We can now create or open an Icechunk store using our config.
 
 ### Creating a new repo
 
@@ -170,7 +170,7 @@ Now we can now create or open an Icechunk store using our config.
     )
     ```
 
-If you are not sure if the repo exists yet, an `icechunk Repository` can created or opened if it already exists:
+If you are not sure if the repo exists yet, an `icechunk Repository` can be created or opened if it already exists:
 
 === "Open or creating with S3 storage"
 

@@ -66,7 +66,7 @@ Arrays have two fundamental properties:
 In Zarr / Icechunk, arrays are split into **chunks**,
 A chunk is the minimum unit of data that must be read / written from storage, and thus choices about chunking have strong implications for performance.
 Zarr leaves this completely up to the user.
-Chunk shape should be chosen based on the anticipated data access pattern for each array
+Chunk shape should be chosen based on the anticipated data access pattern for each array.
 An Icechunk array is not bounded by an individual file and is effectively unlimited in size.
 
 For further organization of data, Icechunk supports **groups** within a single repo.
@@ -81,6 +81,7 @@ Arbitrary JSON-style key-value metadata can be attached to both arrays and group
 Every update to an Icechunk store creates a new **snapshot** with a unique ID.
 Icechunk users must organize their updates into groups of related operations called **transactions**.
 For example, appending a new time slice to multiple arrays should be done as a single transaction, comprising the following steps
+
 1. Update the array metadata to resize the array to accommodate the new elements.
 2. Write new chunks for each array in the group.
 
@@ -124,7 +125,7 @@ In standard regular Zarr stores, these key map directly to filenames in a filesy
 When writing data, a Zarr implementation will create these keys and populate them with data. When modifying existing arrays or groups, a Zarr implementation will potentially overwrite existing keys with new data.
 
 This is generally not a problem, as long there is only one person or process coordinating access to the data.
-However, when multiple uncoordinated readers and writers attempt to access the same Zarr data at the same time, [various consistency problems](https://docs.earthmover.io/concepts/version-control-system#consistency-problems-with-zarr) problems emerge.
+However, when multiple uncoordinated readers and writers attempt to access the same Zarr data at the same time, [various consistency problems](https://docs.earthmover.io/concepts/version-control-system#consistency-problems-with-zarr) emerge.
 These consistency problems can occur in both file storage and object storage; they are particularly severe in a cloud setting where Zarr is being used as an active store for data that are frequently changed while also being read.
 
 With Icechunk, we keep the same core Zarr data model, but add a layer of indirection between the Zarr keys and the on-disk storage.
